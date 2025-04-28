@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component name="KeyboardOverlay" extends="Group">
+  <interface>
+    <!-- Input -->
+	<field id="config" type="assocarray" onChange="configure" alwaysNotify="true" />
+
+    <!-- Output -->
+	<field id="keyboardClosed" type="boolean" alwaysNotify="true" />
+    <field id="searchText" type="string" alwaysNotify="true" />
+  </interface>
+
+  <children>
+	<Rectangle 
+		id="background"
+		color="0x000000FF"
+      	width="400"
+      	height="700"
+		blendingEnabled="false"
+		opacity="0.0"
+    />
+    <LayoutGroup id="content" 
+		layoutDirection="vert"
+		itemSpacings="[10]">
+
+		<MiniKeyboard id="keyboard"
+			keyboardBitmapUri="pkg:/images/FHDMiniKeyboardTemplate.png"
+		/>
+
+		<Button id="actionButton"
+			showFocusFootprint="true"
+			maxWidth="160"
+			minWidth="80"
+			iconUri=""
+			focusedIconUri=""
+		/>
+	</LayoutGroup>
+
+	<Animation
+  		id="fadeInAnimation"
+  		duration="0.4"
+  		repeat="false"
+  		easeFunction="linear">
+
+		<FloatFieldInterpolator
+			fieldToInterp="background.opacity"
+			key="[0.0, 0.5, 1.0]"
+			keyValue="[0.0, 0.5, 0.9]"
+		/>
+	</Animation>
+
+  </children>
+
+  <script type="text/brightscript" uri="pkg:/components/KeyboardOverlay.brs" />
+  <script type="text/brightscript" uri="pkg:/source/Utils.brs" />
+</component>

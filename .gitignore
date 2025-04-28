@@ -1,0 +1,14 @@
+**/.DS_Store
+*.swp
+*.pyc
+.project
+.vscode/
+_build/
+out
+proxy_tests/__pycache__/
+proxy_tests/results/
+tools
+node_modules
+tags
+bin/
+coverage/

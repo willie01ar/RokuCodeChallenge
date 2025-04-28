@@ -1,0 +1,43 @@
+<component name="MovieTile" extends="Group">
+  <interface>
+    <field id="itemContent" type="node" onChange="showContent"/>
+	<field id="focusPercent" type="float" onChange="showFocus"/>
+	<field id="rowFocusPercent" type="float" onChange="showRowFocus"/>
+
+    <field id="posterUrl" type="string" />
+    <field id="title" type="string" />
+  </interface>
+
+  <children>
+	<LayoutGroup id="content"
+		layoutDirection="vert"
+	  	itemSpacings="[10]">
+		
+		<Label
+			id="titleLabel"
+			horizAlign="left"
+			vertAlign="center"
+			text="Movie Title"
+			font="font:SmallSystemFont"
+			ellipsizeOnBoundary="true"
+			width="240"
+		/>
+
+		<Poster id="poster"
+			width="240"
+			height="300"
+			uri="" 
+			loadDisplayMode="limitSize" >
+		
+			<Rectangle 
+				id="itemMask" 
+				color="0x000000FF" 
+				opacity="0.75" 
+				width="240" 
+				height="300"/>
+		</Poster>
+	</LayoutGroup>
+  </children>
+
+  <script type="text/brightscript" uri="./MovieTile.brs" />
+</component>

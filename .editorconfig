@@ -1,0 +1,13 @@
+root = true
+
+#brs indent
+[*.brs]
+indent_style = space
+indent_size = 2
+charset = utf-8
+
+#xml indent
+[*.xml]
+indent_style = tab
+indent_size = 4
+charset = utf-8

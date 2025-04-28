@@ -1,0 +1,9 @@
+<component name="MovieContent" extends="ContentNode">
+  <interface>
+    <field id="title" type="string"/>
+	<field id="year" type="string"/>
+	<field id="imdbID" type="string"/>
+	<field id="type" type="string"/>
+	<field id="posterUri" type="string"/>
+  </interface>
+</component>

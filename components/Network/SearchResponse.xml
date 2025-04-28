@@ -1,0 +1,8 @@
+<component name="SearchResponse" extends="ContentNode">
+  <interface>
+    <field id="errorString" type="string"/>
+	<field id="errorCode" type="integer"/>
+	<field id="succeeded" type="boolean"/>
+	<field id="content" type="node"/>
+  </interface>
+</component>

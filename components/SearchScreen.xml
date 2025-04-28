@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component name="SearchScreen" extends="Group">
+
+  <children> 
+    <LayoutGroup
+      id="mainLayout"
+      layoutDirection="vert"
+      translation="[50, 40]"
+	  itemSpacings="[20]">
+
+      <SimpleLabel
+        id="searchLabel"
+        text="Movies Search - Powered by OMDb API"
+        horizOrigin="center"
+		vertOrigin="center"
+        focusable="false"
+      />
+	  <Group id="searchBoxGroup">
+		<TextEditBox
+			id="searchField"
+			width="600"
+			maxTextLength="600"
+			active="false"
+			focusable="true"
+			translation="[21,11]"
+			hintText="Press OK to search for any movie" />
+		<TextEditBorder id="searchBoxFocus"
+			translation="[18, 6]"
+			visible="false"/>
+	  </Group>
+      <!-- Result list -->
+      <RowList
+        id="resultsList"
+		itemComponentName="MovieTile"
+        itemSize="[900, 385]"
+		rowHeights="[385]"
+        rowItemSize="[[260, 375]]"
+		rowItemSpacing="[[20,0]]"
+        numRows="1"
+		rowFocusAnimationStyle="floatingFocus" />
+      <!-- Load More button -->
+      <Button
+        id="loadMoreButton"
+        text="Load More"
+		maxWidth="190"
+		minWidth="80"
+		iconUri=""
+		focusedIconUri=""
+		translation="[0,900]"
+		showFocusFootprint="true" />
+    </LayoutGroup>  
+	<!-- Detail pane -->
+	<LayoutGroup 
+		id="detailPane"
+		layoutDirection="vert"
+		horizAlignment="left"
+		itemSpacings="[20]" >
+		<Label id="movieTitle" text="Title: " font="font:MediumBoldSystemFont" />
+		<Label id="movieYear" text="Year: " />
+		<Label id="moviePlot" text="Plot: " />
+	</LayoutGroup>
+
+	<BusySpinner id="spinner"
+		translation="[300, 400]"
+		visible="false"/>
+   
+  </children>
+  <script type="text/brightscript" uri="./SearchScreen.brs" />
+  <script type="text/brightscript" uri="pkg:/source/Utils.brs"/>
+  <script type="text/brightscript" uri="pkg:/source/Colors.brs"/>
+</component>

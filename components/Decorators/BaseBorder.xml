@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="BaseBorder" extends="Group">
+    <interface>
+        <function name="setBorderAttributes" />
+        <function name="updateWidth" />
+
+        <field id="borderSize" type="float" alias="topBorder.height, rightBorder.width, bottomBorder.height, leftBorder.width"/>
+        <field id="borderColor" type="color" alias="topBorder.color, bottomBorder.color, rightBorder.color, leftBorder.color" />
+        <field id="borderWidth" type="float" alias="topBorder.width, bottomBorder.width" />
+        <field id="borderHeight" type="float" alias="rightBorder.height, leftBorder.height" />
+        <field id="rightBorderPos" type="vector2d" alias="rightBorder.translation"/>
+        <field id="bottomBorderPos" type="vector2d" alias="bottomBorder.translation"/>
+        <field id="borderblendingEnabled" type="boolean" alias="bottomBorder.blendingEnabled, topBorder.blendingEnabled, rightBorder.blendingEnabled, leftBorder.blendingEnabled"/>
+    </interface>
+    
+	<children>
+        <Rectangle id="topBorder" />
+        <Rectangle id="rightBorder" />
+        <Rectangle id="bottomBorder" />
+        <Rectangle id="leftBorder" />
+    </children>
+
+	<script type="text/brightscript" uri="pkg:/source/colors.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Utils.brs" />
+	<script type="text/brightscript" uri="./BaseBorder.brs" />
+</component>
