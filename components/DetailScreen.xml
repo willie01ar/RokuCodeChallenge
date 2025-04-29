@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="DetailScreen" extends="Group">
+  <interface>
+    <field id="payload" type="node" />
+  </interface>
+
+  <children>
+
+    <Poster
+      id="poster"
+      width="300"
+      height="450"
+      translation="[50, 50]"
+    />
+
+    <Label
+      id="titleLabel"
+      translation="[400, 60]"
+      width="800"
+      height="60"
+      text="Title"
+      font="font:LargeSystemFont"
+      horizAlign="left"
+    />
+
+    <Label
+      id="yearLabel"
+      translation="[400, 130]"
+      width="400"
+      height="40"
+      text="Year"
+      font="font:MediumSystemFont"
+      horizAlign="left"
+    />
+
+    <Label
+      id="movieType"
+      translation="[50, 530]"
+      width="1180"
+      height="200"
+      text="Plot"
+      font="font:SmallSystemFont"
+      horizAlign="left"
+      maxLines="6"
+    />
+
+    <Button
+      id="playButton"
+      translation="[540, 680]"
+      width="200"
+      height="60"
+      text="Play"
+    />
+  </children>
+
+  <script type="text/brightscript" uri="./DetailScreen.brs" />
+  <script type="text/brightscript" uri="pkg:/components/Utilities/Utils.brs"/>
+  <script type="text/brightscript" uri="pkg:/components/Utilities/Events.brs"/>
+  <script type="text/brightscript" uri="pkg:/components/Utilities/ConsoleLog.brs"/>
+</component>

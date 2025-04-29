@@ -3,6 +3,13 @@
 	<interface> 
 		<field id="outputEvent" type="assocarray" value = "{}" alwaysNotify = "true"/>
 	</interface>
+
+	<children>
+		<Group id="NavGroup" translation="[0,0]"/>
+	</children>
 	
 	<script type="text/brightscript" uri="./MainScene.brs" />
+	<script type="text/brightscript" uri="pkg:/components/Utilities/NavStack.brs" />
+	<script type="text/brightscript" uri="pkg:/components/Utilities/Events.brs" />
+	<script type="text/brightscript" uri="pkg:/components/Utilities/ConsoleLog.brs" />
 </component>

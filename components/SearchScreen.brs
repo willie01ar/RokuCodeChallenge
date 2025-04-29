@@ -14,14 +14,14 @@ sub init()
   m.detailPane = m.top.findNode("detailPane")
   m.detailPane.visible = false
 
-  m.searchResults = []
   m.currentPage = 1
 
   m.loadMoreButton.observeField("buttonSelected", "onLoadMorePressed")
-  m.resultsList.observeField("itemFocused", "onItemFocused")
+  m.resultsList.observeField("itemSelected","onItemSelected")
   m.searchLabel.setFocus(true)
 
   m.resultsList.content = createSkeletonContent()
+  
   setupTextEditFocusRect()
 end sub
 
@@ -120,15 +120,14 @@ sub onLoadMorePressed()
   performSearch(m.top.searchQuery, m.currentPage)
 end sub
 
-sub onItemFocused(event as Object)
-  focusedIndex = event.getData()
-  if focusedIndex >= 0 and focusedIndex < m.searchResults.count()
-    movie = m.searchResults[focusedIndex]
-    m.movieTitle.text = "Title: " + movie.title
-    m.movieYear.text = "Year: " + movie.year
-    m.moviePlot.text = "Plot: " + movie.plot
-    m.top.selectedMovie = movie
-  end if
+sub onItemSelected(event as Object)
+  itemSelectedIndex = event.getData()
+  item = m.resultsList.content.getChild(itemSelectedIndex)
+  if item <> invalid 
+    print "Item Selected: "item
+  else 
+    print "Can't retrieve item from content with .getChild()"
+  end if 
 end sub
 
 function createSkeletonContent() as object 

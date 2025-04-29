@@ -5,6 +5,8 @@ sub runUserInterface(args as object)
     port = CreateObject("roMessagePort")
     screen.setMessagePort(port)
     scene = screen.CreateScene("MainScene")
+    m.global = screen.getGlobalNode()
+
     screen.show()
 
     while(true)

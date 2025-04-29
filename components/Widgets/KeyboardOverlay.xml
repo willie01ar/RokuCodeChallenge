@@ -50,6 +50,6 @@
 
   </children>
 
-  <script type="text/brightscript" uri="pkg:/components/KeyboardOverlay.brs" />
-  <script type="text/brightscript" uri="pkg:/source/Utils.brs" />
+  <script type="text/brightscript" uri="pkg:/components/Widgets/KeyboardOverlay.brs" />
+  <script type="text/brightscript" uri="pkg:/components/Utilities/Utils.brs" />
 </component>

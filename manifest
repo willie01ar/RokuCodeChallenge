@@ -1,16 +1,14 @@
-##   Channel Details
 title=Code Challenge
 major_version=1
 minor_version=0
 build_version=00001
 rsg_version=1.2
+bs_const=ENABLE_PROFILER=false;IS_AUTOMATION_BUILD=false;TRACE_URL_TRANSFERS=false;ENABLE_DBG=false;IS_CHARLES=false
 
-##   Channel Assets
 mm_icon_focus_fhd=pkg:/images/channel-poster_fhd.png
 mm_icon_focus_hd=pkg:/images/channel-poster_hd.png
 mm_icon_focus_sd=pkg:/images/channel-poster_sd.png
 
-###  Splash Screen + Loading Screen Artwork 
 splash_screen_fhd=pkg:/images/splash-screen_fhd.jpg
 splash_screen_hd=pkg:/images/splash-screen_hd.jpg
 splash_screen_sd=pkg:/images/splash-screen_sd.jpg

@@ -20,7 +20,7 @@
         <Rectangle id="leftBorder" />
     </children>
 
-	<script type="text/brightscript" uri="pkg:/source/colors.brs" />
-    <script type="text/brightscript" uri="pkg:/source/Utils.brs" />
+	<script type="text/brightscript" uri="pkg:/components/Utilities/Colors.brs" />
+    <script type="text/brightscript" uri="pkg:/components/Utilities/Utils.brs" />
 	<script type="text/brightscript" uri="./BaseBorder.brs" />
 </component>

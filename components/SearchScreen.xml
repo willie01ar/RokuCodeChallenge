@@ -66,6 +66,7 @@
    
   </children>
   <script type="text/brightscript" uri="./SearchScreen.brs" />
-  <script type="text/brightscript" uri="pkg:/source/Utils.brs"/>
-  <script type="text/brightscript" uri="pkg:/source/Colors.brs"/>
+  <script type="text/brightscript" uri="pkg:/components/Utilities/Utils.brs"/>
+  <script type="text/brightscript" uri="pkg:/components/Utilities/Events.brs"/>
+  <script type="text/brightscript" uri="pkg:/components/Utilities/Colors.brs"/>
 </component>
