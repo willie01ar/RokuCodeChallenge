@@ -1,6 +1,7 @@
 **/.DS_Store
 *.swp
 *.pyc
+*.zip
 .project
 .vscode/
 _build/
