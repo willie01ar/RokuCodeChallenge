@@ -1,8 +1,4 @@
 sub init()
-  m.player = m.top.findNode("player")
-  m.player.enableUI = true
-  m.player.playbackActionButtons = [{text:"Stop",icon:"", focusIcon:"", buttonIsDisabled:false}]
-  m.player.observeField("playbackActionButtonSelected", "onPlaybackActionButtonSelected")
   m.poster = m.top.findNode("poster")
   m.titleLabel = m.top.findNode("titleLabel")
   m.yearLabel = m.top.findNode("yearLabel")
@@ -27,17 +23,13 @@ sub onPayloadChange(event as object)
 end sub 
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
-  if press then 
+  if press then
     if key = "left" and m.playButton.hasFocus()
       m.backButton.setFocus(true)
       return true
     end if
     if key="right" and m.backButton.hasFocus()
       m.playButton.setFocus(true)
-      return true
-    end if 
-    if key="OK" and m.player.hasFocus()
-      closePlayer()
       return true
     end if 
   end if
@@ -49,28 +41,12 @@ sub onBackButtonSelected()
 end sub
 
 sub onPlayButtonSelected()
-  ConsoleLog().info("Play button pressed")
+  ConsoleLog().warn("Play button pressed")
   videoContent = createObject("roSGNode","ContentNode")
   videoContent.url = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
   videoContent.title = "Test Video"
   videoContent.streamformat = "hls"
-  
-
-  m.player.content = videoContent
-  m.player.visible = true
-  m.player.setFocus(true)
-  m.player.control = "play"
-end sub
-
-sub closePlayer()
-  m.player.control = "stop"
-  m.player.visible = false
-  m.backButton.setFocus(true)
-end sub 
-
-sub onPlaybackActionButtonSelected(event as object)
-  data = event.getData()
-  closePlayer()
+  fireEvent("navigate",{direction: "forward", pageType:"VideoPlayer", payload: videoContent})
 end sub
 
 sub exitPage()
@@ -81,3 +57,11 @@ sub returnFocus()
   'what we do when get focus
   m.playButton.setFocus(true)
 end sub 
+
+sub doCleanup()
+   ' Do any work needed before this screen gets removed from the nav stack
+end sub 
+
+sub handleEventResults()
+  'no-op 
+end sub

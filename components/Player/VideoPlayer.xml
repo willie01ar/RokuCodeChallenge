@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="VideoPlayer" extends="BasePage">
+  <interface>
+    <field id="payload" type="node" onChange="onPayloadChange" alwaysNotify="true" />
+  </interface>
+
+  <children>
+	<!-- Content -->
+	<Video id="player"
+		width="1280"
+		height="720"
+		translation="[0,0]"/>
+
+	<Label id="videoControls"
+		text="Press OK to close"
+		color="#000000"
+        focusable="false"
+		translation="[623,680]"/>
+  </children>
+
+  <script type="text/brightscript" uri="./VideoPlayer.brs" />
+
+</component>

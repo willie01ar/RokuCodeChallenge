@@ -4,6 +4,7 @@
         <field id="eventResults" type="assocArray" alwaysNotify="true" />
         <field id="exitPage" type="boolean" onChange="exitPage" alwaysNotify="true" />
         <field id="returnFocus" type="assocArray" onChange="returnFocus" alwaysNotify="true" />
+		<field id="cleanUp" type="boolean" onChange="doCleanup" alwaysNotify="true"/>
     </interface>
 
     <!-- general scripts -->

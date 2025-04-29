@@ -67,19 +67,6 @@
 				text="Play"/>
 		</LayoutGroup>
 	</LayoutGroup>
-
-	<Video id="player"
-		width="1280"
-		height="720"
-		translation="[0,0]"
-		visible="false"/>
-	<Label id="videoControls"
-		text="Press OK to close"
-        horizOrigin="center"
-		vertOrigin="center"
-        focusable="false"
-		translation= "[623 - 680]" />
-
   </children>
 
   <script type="text/brightscript" uri="./DetailScreen.brs" />

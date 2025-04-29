@@ -18,7 +18,6 @@ sub init()
 
   m.loadMoreButton.observeField("buttonSelected", "onLoadMorePressed")
   m.resultsList.observeField("rowItemSelected","onItemSelected")
-  ' m.searchLabel.setFocus(true)
 
   m.resultsList.content = createSkeletonContent()
   m.hasSkeleton = true 
@@ -175,3 +174,15 @@ sub returnFocus()
     setSearchFieldFocus(true)
   end if  
 end sub 
+
+sub doCleanUp()
+  m.currentPage = 1
+end sub
+
+sub exitPage()
+  'no-op
+end sub 
+
+sub handleEventResults()
+  'no-op
+end sub

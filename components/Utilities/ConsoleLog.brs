@@ -12,15 +12,15 @@
 'component subtype
 
 function ConsoleLog()
-    if m.log = invalid then
-        m.log = {
+    if m.consoleLog = invalid then
+        m.consoleLog = {
             error: _log_error
             warn:  _log_warn
             info:  _log_info
             debug: _log_debug
         }
     end if
-    return m.log
+    return m.consoleLog
 end function
 
 sub _log_error(msg as dynamic, componentId = "none" as string)

@@ -35,10 +35,29 @@ function getTopParent(node)
 end function
 
 sub handleEventResults()
-  ConsoleLog().error("OVERRIDE THIS FUNCTION")
+  ' If the page receive data due to a triggered event, this is the place to handle it
+  ConsoleLog().error("Subtypes MUST OVERRIDE THIS FUNCTION")
+  _ = {}
+  _.crash()
 end sub
 
-' Called before current page is removed from stack
 sub doCleanUp()
-  ConsoleLog().debug("OVERRIDE THIS FUNCTION")
+  ' Do any work needed before this screen gets removed from the nav stack
+  ConsoleLog().error("Subtypes OVERRIDE THIS FUNCTION")
+  _ = {}
+  _.crash()
 end sub
+
+sub exitPage()
+  ' Do any work needed when exiting the page
+  ConsoleLog().error("Subtypes OVERRIDE THIS FUNCTION")
+  _ = {}
+  _.crash()
+end sub 
+
+sub returnFocus()
+  ' Do any work needed when getting back focus
+  ConsoleLog().error("Subtypes OVERRIDE THIS FUNCTION")
+  _ = {}
+  _.crash()
+end sub 
