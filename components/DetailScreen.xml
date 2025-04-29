@@ -1,60 +1,87 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="DetailScreen" extends="Group">
+<component name="DetailScreen" extends="BasePage">
   <interface>
-    <field id="payload" type="node" />
+    <field id="payload" type="node" onChange="onPayloadChange" alwaysNotify="true" />
   </interface>
 
   <children>
+	<!-- Content -->
+	<LayoutGroup id="main"
+		layoutDirection="vert"
+		itemSpacings="[10]"
+		translation="[100, 100]">
 
-    <Poster
-      id="poster"
-      width="300"
-      height="450"
-      translation="[50, 50]"
-    />
+		<!-- Content -->
+		<LayoutGroup id="content"
+			layoutDirection="horiz"
+			itemSpacings="[10]">
+			<Poster id="poster"
+				width="300"
+				height="450"
+				translation="[50, 50]"/>
+			<LayoutGroup id="metadata" 
+				layoutDirection="vert">
+				<Label id="titleLabel"
+					translation="[400, 60]"
+					width="800"
+					height="60"
+					text="Title"
+					font="font:LargeSystemFont"
+					horizAlign="left"/>
 
-    <Label
-      id="titleLabel"
-      translation="[400, 60]"
-      width="800"
-      height="60"
-      text="Title"
-      font="font:LargeSystemFont"
-      horizAlign="left"
-    />
+				<Label id="yearLabel"
+					translation="[400, 130]"
+					width="400"
+					height="40"
+					text="Year"
+					font="font:MediumSystemFont"
+					horizAlign="left"/>
 
-    <Label
-      id="yearLabel"
-      translation="[400, 130]"
-      width="400"
-      height="40"
-      text="Year"
-      font="font:MediumSystemFont"
-      horizAlign="left"
-    />
+				<Label id="movieType"
+					translation="[50, 530]"
+					width="1180"
+					height="200"
+					text="Plot"
+					font="font:SmallSystemFont"
+					horizAlign="left"
+					maxLines="6"/>
+			</LayoutGroup>
+		</LayoutGroup>
 
-    <Label
-      id="movieType"
-      translation="[50, 530]"
-      width="1180"
-      height="200"
-      text="Plot"
-      font="font:SmallSystemFont"
-      horizAlign="left"
-      maxLines="6"
-    />
+		<!-- Controls -->
+		<LayoutGroup id="controls"
+			layoutDirection="horiz"
+			itemSpacings="[20]">
+			<Button id="backButton"
+				translation="[540, 680]"
+				maxWidth="190"
+				minWidth="80"
+				height="60"
+				text="Back"/>
 
-    <Button
-      id="playButton"
-      translation="[540, 680]"
-      width="200"
-      height="60"
-      text="Play"
-    />
+			<Button id="playButton"
+				translation="[540, 680]"
+				maxWidth="190"
+				minWidth="80"
+				height="60"
+				text="Play"/>
+		</LayoutGroup>
+	</LayoutGroup>
+
+	<Video id="player"
+		width="1280"
+		height="720"
+		translation="[0,0]"
+		visible="false"/>
+	<Label id="videoControls"
+		text="Press OK to close"
+        horizOrigin="center"
+		vertOrigin="center"
+        focusable="false"
+		translation= "[623 - 680]" />
+
   </children>
 
   <script type="text/brightscript" uri="./DetailScreen.brs" />
-  <script type="text/brightscript" uri="pkg:/components/Utilities/Utils.brs"/>
-  <script type="text/brightscript" uri="pkg:/components/Utilities/Events.brs"/>
-  <script type="text/brightscript" uri="pkg:/components/Utilities/ConsoleLog.brs"/>
+
 </component>

@@ -2,6 +2,7 @@
 <component name="MainScene" extends="Scene">
 	<interface> 
 		<field id="outputEvent" type="assocarray" value = "{}" alwaysNotify = "true"/>
+		<field id="topPageId" type="string" />
 	</interface>
 
 	<children>

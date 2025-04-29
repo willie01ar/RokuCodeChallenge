@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="BasePage" extends="Group">
+    <interface>
+        <field id="eventResults" type="assocArray" alwaysNotify="true" />
+        <field id="exitPage" type="boolean" onChange="exitPage" alwaysNotify="true" />
+        <field id="returnFocus" type="assocArray" onChange="returnFocus" alwaysNotify="true" />
+    </interface>
+
+    <!-- general scripts -->
+    <script type="text/brightscript" uri="./BasePage.brs"/>
+
+    <!-- utility scripts -->
+	<script type="text/brightscript" uri="pkg:/components/Utilities/Colors.brs"/>
+    <script type="text/brightscript" uri="pkg:/components/Utilities/Utils.brs"/>
+    <script type="text/brightscript" uri="pkg:/components/Utilities/Events.brs"/>
+    <script type="text/brightscript" uri="pkg:/components/Utilities/ConsoleLog.brs"/>
+</component>

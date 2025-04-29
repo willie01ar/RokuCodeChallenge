@@ -3,7 +3,7 @@ sub init()
   m.spinner = m.top.findNode("spinner")
   m.spinner.poster.uri = "pkg:/images/busyspinner_hd.png"
   m.searchBoxFocus = m.top.findNode("searchBoxFocus")
-  m.searchLabel = m.top.findNode("searchLabel")
+  ' m.searchLabel = m.top.findNode("searchLabel")
   m.searchField = m.top.findNode("searchField")
   m.searchField.observeField("focused","onSearchBoxFocusChange")
   m.resultsList = m.top.findNode("resultsList")
@@ -17,11 +17,11 @@ sub init()
   m.currentPage = 1
 
   m.loadMoreButton.observeField("buttonSelected", "onLoadMorePressed")
-  m.resultsList.observeField("itemSelected","onItemSelected")
-  m.searchLabel.setFocus(true)
+  m.resultsList.observeField("rowItemSelected","onItemSelected")
+  ' m.searchLabel.setFocus(true)
 
   m.resultsList.content = createSkeletonContent()
-  
+  m.hasSkeleton = true 
   setupTextEditFocusRect()
 end sub
 
@@ -34,10 +34,9 @@ function setupTextEditFocusRect()
   setSearchFieldFocus(true)
 end function 
 
-' Custom key handling
 function onKeyEvent(key as String, press as Boolean) as Boolean
   if press then 
-    if key = "OK" and m.searchLabel.hasFocus()
+    if key = "OK" and m.searchField.hasFocus()
       openKeyboardOverlay()
       return true
     end if
@@ -107,6 +106,7 @@ function onSearchResults(event as object)
   m.spinner.visible = false
   results = event.getData()
   if results.succeeded
+    m.hasSkeleton = false
     m.resultsList.content = results.content
   else 
     presentError(results)
@@ -121,12 +121,12 @@ sub onLoadMorePressed()
 end sub
 
 sub onItemSelected(event as Object)
-  itemSelectedIndex = event.getData()
-  item = m.resultsList.content.getChild(itemSelectedIndex)
-  if item <> invalid 
-    print "Item Selected: "item
+  rowItemSelected = event.getData()
+  itemSelected = m.resultsList.content.getChild(rowItemSelected[0]).getChild(rowItemSelected[1])
+  if itemSelected <> invalid 
+   fireEvent("navigate",{direction: "forward", pageType:"DetailScreen", payload: itemSelected})
   else 
-    print "Can't retrieve item from content with .getChild()"
+    ConsoleLog().error("Unable to retrieve content")
   end if 
 end sub
 
@@ -166,3 +166,12 @@ sub setSearchFieldFocus(focus as boolean)
   m.searchField.setFocus(focus)
   m.searchBoxFocus.visible = focus
 end sub
+
+sub returnFocus()
+  'what we do when get focus
+  if m.resultsList.content.getChild(0).getChildCount() > 0 and not m.hasSkeleton 
+    m.resultsList.setFocus(true)
+  else
+    setSearchFieldFocus(true)
+  end if  
+end sub 
