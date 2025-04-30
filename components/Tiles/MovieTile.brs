@@ -1,5 +1,10 @@
 sub init()
   m.poster = m.top.findNode("poster")
+  'Note: 
+  ' Let's check on the loading status of the poster to replace if with a placeholder if it fails.
+  ' A good improvement for this is to build a RetryablePoster object with this functionality built in.
+  '
+  m.poster.observeField("loadStatus","onPosterLoadStatus")
   m.titleLabel = m.top.findNode("titleLabel")
   m.itemMask = m.top.findNode("itemMask")
 
@@ -33,3 +38,11 @@ end sub
 sub updateTitle()
   m.titleLabel.text = m.top.title
 end sub
+
+sub onPosterLoadStatus(event as object)
+  status = event.getData()
+  ConsoleLog().warn("Poster load status: "+status)
+  if status = "failed" 
+    m.poster.uri = "pkg:/images/Failed_to_load.png"
+  end if
+end sub 

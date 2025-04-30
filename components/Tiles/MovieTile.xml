@@ -40,4 +40,5 @@
   </children>
 
   <script type="text/brightscript" uri="./MovieTile.brs" />
+  <script type="text/brightscript" uri="pkg:/components/Utilities/ConsoleLog.brs" />
 </component>

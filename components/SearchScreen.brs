@@ -18,9 +18,11 @@ sub init()
 
   m.loadMoreButton.observeField("buttonSelected", "onLoadMorePressed")
   m.resultsList.observeField("rowItemSelected","onItemSelected")
+  m.resultsList.observeField("rowItemFocused", "onRowItemFocused")
 
   m.resultsList.content = createSkeletonContent()
   m.hasSkeleton = true 
+  m.paginationEnabled = false
   setupTextEditFocusRect()
 end sub
 
@@ -38,9 +40,16 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
     if key = "OK" and m.searchField.hasFocus()
       openKeyboardOverlay()
       return true
-    end if
-    if key="up" and m.resultsList.hasFocus()
-      setSearchFieldFocus(true)
+    else if key="up" 
+      if m.resultsList.hasFocus()
+        setSearchFieldFocus(true)
+        return true
+      else if m.loadMoreButton.hasFocus()
+        m.resultsList.setFocus(true)
+        return true 
+      end if
+    else if key="right" and m.resultsList.hasFocus() and m.paginationEnabled
+      m.loadMoreButton.setFocus(true)
       return true
     end if 
   end if
@@ -86,6 +95,8 @@ end sub
 
 sub onKeyboardClosed()
   closeKeyboardOverlay()
+  m.currentPage = 1
+  m.resultsList.content = invalid
   performSearch(m.searchField.text, m.currentPage)
 end sub 
 
@@ -103,12 +114,19 @@ end sub
 
 function onSearchResults(event as object)
   m.spinner.visible = false
-  results = event.getData()
-  if results.succeeded
-    m.hasSkeleton = false
-    m.resultsList.content = results.content
+  searchResults = event.getData()
+  if searchResults.succeeded
+    if m.currentPage > 1
+      ' Since we are pass the first page, append the new content to the m.resultsList
+      rootNode = searchResults.content.getChild(0)
+      m.resultsList.content.getChild(0).appendChildren(rootNode.getChildren(rootNode.getChildCount(),0))
+    else 
+      ' First batch of content, we need to remove the skeleton and insert the real content
+      m.hasSkeleton = false
+      m.resultsList.content = searchResults.content
+    end if 
   else 
-    presentError(results)
+    presentError(searchResults)
   end if 
 
   m.searchTask = invalid
@@ -116,9 +134,11 @@ end function
 
 sub onLoadMorePressed()
   m.currentPage += 1
-  performSearch(m.top.searchQuery, m.currentPage)
+  performSearch(m.searchField.text, m.currentPage)
 end sub
 
+' RowList handling
+' 
 sub onItemSelected(event as Object)
   rowItemSelected = event.getData()
   itemSelected = m.resultsList.content.getChild(rowItemSelected[0]).getChild(rowItemSelected[1])
@@ -126,6 +146,14 @@ sub onItemSelected(event as Object)
    fireEvent("navigate",{direction: "forward", pageType:"DetailScreen", payload: itemSelected})
   else 
     ConsoleLog().error("Unable to retrieve content")
+  end if 
+end sub
+
+sub onRowItemFocused(event as object)
+  rowItemFocused = event.getData()
+  itemIndex = rowItemFocused[1]
+  if m.resultsList.content.getChild(0).getChildCount() >= itemIndex
+    m.paginationEnabled = true
   end if 
 end sub
 
@@ -154,7 +182,6 @@ function presentError(result as object)
 end function 
 
 sub onErrorDialogClose()
-  print "onErrorDialogClose.... "
   m.errorDialog.visible = false
   m.top.removeChild(m.errorDialog)
   m.errorDialog = invalid
