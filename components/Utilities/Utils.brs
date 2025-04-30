@@ -35,15 +35,56 @@ function hex2int(hex as string) as integer
   return val(hex, 16)
 end function
 
+'******************************************************
+'isValid
+'
+'Determine if the given object is not invalid and is not uninitialized
+'******************************************************
+function isValid(obj as dynamic) as boolean
+  return type(obj) <> "<uninitialized>" and obj <> invalid
+end function
+
+'******************************************************
+'implements
+'
+'Determine if x implements the given interface
+'******************************************************
 function implements(x as dynamic, interfaceName as string) as boolean
   return x <> invalid and getInterface(x, interfaceName) <> invalid
 end function
 
-' Returns true if `x` is not a non-whitespace string.
-function isBlank(x as dynamic) as boolean
-  return not implements(x, "ifString") or x.trim() = ""
-end function
-
+'******************************************************
+'isPureArray
+'
+'Determine if x is an array
+'******************************************************
 function isPureArray(x as dynamic) as boolean
   return not implements(x, "ifAssociativeArray") and implements(x, "ifArray")
+end function
+
+'******************************************************
+'isStr
+'
+'Determine if the given object supports the ifString interface
+'******************************************************
+function isStr(obj as dynamic) as boolean
+  return isValid(obj) and getInterface(obj, "ifString") <>invalid
+end function
+
+'******************************************************
+'isStr
+'
+'Determine if the given string starts with http
+'******************************************************
+function isUrl(url as dynamic) as boolean
+  return isStr(url) and left(url, 4) = "http"
+end function
+
+'******************************************************
+'isBlank
+'
+'Determine if x is a non-whitespace string.
+'******************************************************
+function isBlank(x as dynamic) as boolean
+  return not implements(x, "ifString") or x.trim() = ""
 end function

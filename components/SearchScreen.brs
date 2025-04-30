@@ -3,9 +3,7 @@ sub init()
   m.spinner = m.top.findNode("spinner")
   m.spinner.poster.uri = "pkg:/images/busyspinner_hd.png"
   m.searchBoxFocus = m.top.findNode("searchBoxFocus")
-  ' m.searchLabel = m.top.findNode("searchLabel")
   m.searchField = m.top.findNode("searchField")
-  m.searchField.observeField("focused","onSearchBoxFocusChange")
   m.resultsList = m.top.findNode("resultsList")
   m.loadMoreButton = m.top.findNode("loadMoreButton")
   m.movieTitle = m.top.findNode("movieTitle")
@@ -51,19 +49,14 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
     else if key="right" and m.resultsList.hasFocus() and m.paginationEnabled
       m.loadMoreButton.setFocus(true)
       return true
+    else if key="down" and m.searchField.hasFocus()
+      setSearchFieldFocus(false)
+      m.resultsList.setFocus(true)
+      return true
     end if 
   end if
   return false
 end function
-
-sub onSearchBoxFocusChange(event as object)
-  focused = event.getData()
-  if focused 
-    m.searchBoxFocus.visible = true
-  else 
-    m.searchFoxFocus.visible = false
-  end if 
-end sub 
 
 sub openKeyboardOverlay()
   m.keyboardOverlay = createObject("roSGNode", "KeyboardOverlay")

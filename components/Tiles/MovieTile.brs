@@ -41,7 +41,6 @@ end sub
 
 sub onPosterLoadStatus(event as object)
   status = event.getData()
-  ConsoleLog().warn("Poster load status: "+status)
   if status = "failed" 
     m.poster.uri = "pkg:/images/Failed_to_load.png"
   end if

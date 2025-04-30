@@ -22,6 +22,7 @@
 			maxTextLength="600"
 			active="false"
 			focusable="true"
+			clearOnDownKey="false"
 			translation="[21,11]"
 			hintText="Press OK to search for any movie" />
 		<TextEditBorder id="searchBoxFocus"

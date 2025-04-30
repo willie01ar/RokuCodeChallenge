@@ -61,7 +61,11 @@ function parseResponse(responseString as String)
     for each movie in jsonResponse.Search
       movieNode = createObject("roSGNode", "MovieContent")
       movieNode.title = movie.Title
-      movieNode.posterUri = movie.Poster
+      if isUrl(movie.Poster)
+        movieNode.posterUri = movie.Poster
+      else 
+        movieNode.posterUri = "pkg:/images/Failed_to_load.png"
+      end if 
       movieNode.year = movie.Year
       movieNode.imdbID = movie.imdbID 
       rowNode.appendChild(movieNode)
