@@ -12,7 +12,8 @@ This is the code base for the Paramount+ Code Challenge
 
 # To Deploy
 
-There is no build process implemented.  Just zip up the entire project (excluding the rather large .git directory).  Make sure the zip process leaves the *manifest* file in the root path.  
+Using the device's web interface, side load the file `Archive.zip`
+There is no build process implemented.  Just zip up the entire project (excluding the rather large .git directory).  Make sure the zip process leaves the *manifest* file in the root path.
 
 There's a convenience tool for doing this from the command line, which we recommend (see [github page](https://github.com/hulu/roku-dev-cli) for usage).    
 
