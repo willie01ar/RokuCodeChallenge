@@ -10,13 +10,14 @@ This is the code base for the Paramount+ Code Challenge
 * The OMDbAPI response contains some missing or broken images, the tile widget attempt to provide a place holder for those
 
 
-# To Deploy
+# Configure Deploy scrips
 
-Using the device's web interface, side load the file `Archive.zip`
-There is no build process implemented.  Just zip up the entire project (excluding the rather large .git directory).  Make sure the zip process leaves the *manifest* file in the root path.
+Run `npm install` to gather all the dependencies you need.
+Make sure you have gulp-cli installed `npm install -g gulp-cli` 
+Make sure you update the right credentials in `./gulpfile.js/deploy.js` 
 
-There's a convenience tool for doing this from the command line, which we recommend (see [github page](https://github.com/hulu/roku-dev-cli) for usage).    
-
-```shell
-pip3 install roku-dev-cli
-```
+* `gulp configure`: Configures your build interactively
+* `gulp logs`: Connects to the configured IP address via `telnet` to view logs. All key strokes are passed through
+* `gulp deploy`: Builds and deploys this channel to the Roku device at the configured IP address
+* `gulp clean`: Removes build artifacts.  Happens automatically so you likely won't need to do this often.
+* `gulp build`: Builds this channel without deploying it.  See the `bin/` directory for results.
