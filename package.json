@@ -1,0 +1,41 @@
+{
+  "name": "codechallenge",
+  "version": "1.0.0",
+  "description": "Paramount+ Code Challenge",
+  "main": ".eslintrc.js",
+  "devDependencies": {
+    "digest-fetch": "^3.1.1",
+    "digest-header": "^1.1.0",
+    "fast-glob": "^3.3.3",
+    "form-data": "^4.0.2",
+    "git-last-commit": "^1.0.1",
+    "gulp": "^5.0.0",
+    "gulp-cli": "^3.0.0",
+    "minimist": "^1.2.8",
+    "mkdirp": "^3.0.1",
+    "node-fetch": "^3.3.2",
+    "prompts": "^2.4.2",
+    "rimraf": "^6.0.1",
+    "undici": "^7.8.0",
+    "yazl": "^3.3.1"
+  },
+  "scripts": {
+    "check:env": "scripts/checkEnv.js",
+    "clean": "scripts/gpa.js clean --",
+    "configure": "scripts/gpa.js configure --",
+    "build": "scripts/gpa.js build --",
+    "deploy": "scripts/gpa.js deploy --",
+    "logs": "scripts/gpa.js logs --",
+    "lint": "eslint . || true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/willie01ar/RokuCodeChallenge.git"
+  },
+  "author": "Williams Martinez",
+  "dependencies": {
+    "@mhoc/axios-digest-auth": "^0.8.0",
+    "ansi-colors": "^4.1.3",
+    "axios": "^1.9.0"
+  }
+}
